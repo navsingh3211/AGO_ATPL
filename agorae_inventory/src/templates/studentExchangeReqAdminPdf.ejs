@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+    </style>
+</head>
+<body style="max-width: 600px; margin: 0 auto; font-size: 13px; font-weight: 500; border: 1px solid #CCC;padding: 16px;background: #fff; color: #000; font-family: 'Poppins', sans-serif;">
+    <div style="text-align: center; margin-bottom: 16px;">
+        <img src="<%= orderDetails.instituteData.logo ? orderDetails.instituteData.logo.fullPath : 'NA' %>" style="max-width: 100px; height: auto;">
+        <p style="color:#044987; font-size: 16px; margin: 0; font-weight: 600;"><%= orderDetails.instituteData ? orderDetails.instituteData.instituteName : 'NA' %></p>
+        <p style="margin: 0 auto; max-width: 320px; color: #444444;"><%= orderDetails.instituteData ? orderDetails.instituteData.address : 'NA' %></p>
+        <a href="mailto:<%= orderDetails.instituteData ? orderDetails.instituteData.email : 'NA' %>" style="margin: 0; color: #444444; text-decoration: none;"><%= orderDetails.instituteData ? orderDetails.instituteData.email : 'NA' %></a>
+        <p style="margin: 0;color: #444444;"><%= orderDetails.instituteData ? orderDetails.instituteData.mobileNo : 'NA' %></p>
+        <p style="text-align: right; margin: 4px 0;"><span style="color: #4E4E4E;"><%= orderDetails.instituteData.gstNumber ? 'GST No. -' : '' %> </span> <%= orderDetails.instituteData ? orderDetails.instituteData.gstNumber : 'NA' %></p>
+        <hr>
+    </div>  
+
+    <table cellspacing="0" cellpadding="0" width="100%">
+        <tbody>
+            <tr>
+                <td width="50%" style="padding-bottom: 6px;"><span style="color: #4E4E4E;">Name -</span> <%= orderDetails.studentData ? orderDetails.studentData.studentName : 'NA' %></td>
+                <td width="50%" style="padding-bottom: 6px;"><span style="color: #4E4E4E;">Unique ID -</span> <%= orderDetails.studentData ? orderDetails.studentData.studentUniqueCode : 'NA' %></td>
+            </tr>
+            <tr>
+              <td width="50%" style="padding-bottom: 6px;"><span style="color: #4E4E4E;">Class -</span> <%= orderDetails.studentData ? orderDetails.studentData.className : 'NA' %></td>
+              <td width="50%" style="padding-bottom: 6px;"><span style="color: #4E4E4E;">Batch -</span> <%= orderDetails.studentData ? orderDetails.studentData.batchName : 'NA' %></td>
+            </tr>
+            <tr>
+                <td width="50%" style="padding-bottom: 6px;"><span style="color: #4E4E4E;">Order Date -</span> <%= orderDetails ? orderDetails.orderDate : 'NA' %></td>
+                <td width="50%" style="padding-bottom: 6px;"><span style="color: #4E4E4E;">Payment Mode -</span> <%= orderDetails ? orderDetails.paymentMode : 'NA' %></td>
+
+            </tr>
+            <tr>
+                <td width="50%" style="padding-bottom: 6px;"><span style="color: #4E4E4E;">Order ID -</span> <%= orderDetails ? orderDetails.orderId : 'NA' %></td>
+                <td width="50%" style="padding-bottom: 6px;"><span style="color: #4E4E4E;">Transaction ID -</span> <%= orderDetails ? orderDetails.transactionId : 'NA' %></td>
+            </tr>
+
+        </tbody>
+    </table>
+
+    <table cellspacing="0" cellpadding="4px"  width="100%;"  style="text-align: center;margin: 8px 0;">
+        <tbody style="background-color: #FBFBFB;">
+            <thead style="background-color: #E1EDFC;">
+                <tr>
+                    <th style="border-right: 1px solid #CCC; white-space: nowrap; padding: 8px; font-weight: 600;"><%= orderDetails.itemFrom === 'ITEM_KIT' ? 'Kit Id' : 'Item ID' %></th>
+                    <th style="border-right: 1px solid #CCC; white-space: nowrap; padding: 8px; font-weight: 600;">Item (s)</th>
+                    <th style="border-right: 1px solid #CCC; white-space: nowrap; padding: 8px; font-weight: 600;">Qty</th>
+                    <th style="border-right: 1px solid #CCC; white-space: nowrap; padding: 8px; font-weight: 600;">Selling Price</th>
+                    <th style="border-right: 1px solid #CCC; white-space: nowrap; padding: 8px; font-weight: 600;">Tax Rate</th>
+                    <th style="white-space: nowrap; padding: 8px; font-weight: 600;">Total</th>
+                </tr>
+            </thead>
+            
+              <% if(orderDetails.itemFrom === 'ITEM_MASTER'){ %>
+                <% for(var i=0; i < orderDetails.exchangeData.length; i++) { %>
+                  
+                  <tr>
+                      <td style="padding-bottom: 8px; border-bottom: 1px solid #CCC; border-right: 1px solid #CCC;"><%= orderDetails ? orderDetails.itemId : 'NA' %></td>
+                      <td style="padding-bottom: 8px; border-bottom: 1px solid #CCC; border-right: 1px solid #CCC;">
+                          <p style="margin: 0; font-weight: 600;"><%= orderDetails ? orderDetails.itemName : 'NA' %></p>
+                          <span style="color: #4E4E4E;">Size - </span> <%= orderDetails.exchangeData[i].size ? orderDetails.exchangeData[i].size : 'NA' %>
+                      </td>
+                      <td style="padding-bottom: 8px; border-bottom: 1px solid #CCC; border-right: 1px solid #CCC;"><%= orderDetails.exchangeData[i] ? orderDetails.exchangeData[i].quantity : 'NA' %></td>
+                      <td style="padding-bottom: 8px; border-bottom: 1px solid #CCC; border-right: 1px solid #CCC;">₹ <%= orderDetails.exchangeData[i] ? orderDetails.exchangeData[i].exchangeItemPrice : '' %></td>
+                      <td style="padding-bottom: 8px; border-bottom: 1px solid #CCC; border-right: 1px solid #CCC;"><%= orderDetails.taxRate ? orderDetails.taxRate.percentage + '%' : 'NA' %></td>
+                      <td style="padding-bottom: 8px; border-bottom: 1px solid #CCC;">₹ <%= orderDetails.exchangeData[i] ? orderDetails.exchangeData[i].exchangeItemPrice : '' %></td>
+                  </tr>
+                <% } %>
+
+              <% } else { %>
+                <% for(var i=0; i < orderDetails.exchangeData.length; i++) { %>
+                  <tr>
+                      <td style="padding-bottom: 8px; border-bottom: 1px solid #CCC; border-right: 1px solid #CCC;"><%= orderDetails ? orderDetails.kitId : 'NA' %></td>
+                      <td style="padding-bottom: 8px; border-bottom: 1px solid #CCC; border-right: 1px solid #CCC;">
+                          <p style="margin: 0; font-weight: 600;"><%= orderDetails ? orderDetails.itemName : 'NA' %></p>
+                          <span style="color: #4E4E4E;">Size - </span> NA %>
+                      </td>
+                      <td style="padding-bottom: 8px; border-bottom: 1px solid #CCC; border-right: 1px solid #CCC;"><%= orderDetails.exchangeData[i] ? orderDetails.exchangeData[i].quantity : 'NA' %></td>
+                      <td style="padding-bottom: 8px; border-bottom: 1px solid #CCC; border-right: 1px solid #CCC;">₹ <%= orderDetails.exchangeData[i] ? orderDetails.exchangeData[i].exchangeItemPrice : '' %></td>
+                      <td style="padding-bottom: 8px; border-bottom: 1px solid #CCC; border-right: 1px solid #CCC;">NA</td>
+                      <td style="padding-bottom: 8px; border-bottom: 1px solid #CCC;">₹ <%= orderDetails.exchangeData[i] ? orderDetails.exchangeData[i].exchangeItemPrice : '' %></td>
+                  </tr>
+                <% } %>
+              <% } %>
+                
+            
+
+              <tr>
+                <td style="text-align: right; font-size: 16px; font-weight: 600; border-top: 1px solid #0A91F8;border-bottom: 1px solid #0A91F8;" colspan="6">Total Paid - ₹ <%= orderDetails.exchangeData.length > 0 ? orderDetails.exchangeData.reduce((total, item) => total + item.exchangeItemPrice, 0) : '' %></td>
+              </tr>
+
+        </tbody>
+    </table>
+
+    <table cellspacing="0" cellpadding="4px" width="100%;">
+        <tbody>
+            <tr>
+                <td style="color: #707070; white-space: nowrap; font-size: 12px; vertical-align: baseline;">Note - </td>
+                <td style="color: #707070; font-size: 12px;"> <%= orderDetails.instituteData ? orderDetails.instituteData.note : 'NA' %></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table cellspacing="0" cellpadding="4px" width="100%;" style="margin-top: 20px;">
+      <tbody>
+          <tr>
+              <td style="white-space: nowrap; font-size: 14px; vertical-align: center;"><span style="color: #4E4E4E;">Date of Payment - </span><%= orderDetails ? orderDetails.orderDate : 'NA' %></td>
+              <td style="font-size: 14px; text-align: center;">
+                  <img src="<%= orderDetails.instituteData.signatureImages ? orderDetails.instituteData.signatureImages.fullPath : 'NA' %>" style="max-height: 50px; height: auto; width: auto; max-width: 150px;"><br/>
+                  <%= orderDetails.instituteData ? orderDetails.instituteData.signatureName : 'NA' %><br><span style="font-size: 13px; color: #444444;">(Authorized Signatory) </span></td>
+          </tr>
+      </tbody>
+    </table>
+
+
+
+</body>
+</html>

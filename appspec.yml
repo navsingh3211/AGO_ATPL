@@ -1,0 +1,18 @@
+version: 0.0
+os: linux
+
+hooks:
+  BeforeInstall:
+    - location: git_pull.sh
+      runas: ubuntu
+    - location: set_permissions.sh
+  AfterInstall:
+    - location: build.sh
+      runas: ubuntu
+      timeout: 600
+  ApplicationStart:
+    - location: server_restart.sh
+      runas: ubuntu
+      timeout: 100
+      overwrite: true
+file_exists_behavior: OVERWRITE

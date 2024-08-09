@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
+        </style>
+</head>
+<body>
+    <table border="0" cellspacing="0" cellpadding="0" width="100%" style="font-family: 'Poppins', sans-serif;">
+        <tbody>
+            <tr>
+                <td>
+                    <span style="color: #7F7F7F; font-size: 14px;">Vendor (Company Name)</span><br>
+                    <span style="color: #000000; font-size: 16px; font-weight: 500;"><%= vendorDetails.vendorName %></span>
+                </td>
+                <td>
+                    <span style="color: #7F7F7F; font-size: 14px;">Contact Person</span><br>
+                    <span style="color: #000000; font-size: 16px; font-weight: 500;"><%= vendorDetails.contactPersonName %></span>
+                </td>
+                <td>
+                    <span style="color: #7F7F7F; font-size: 14px;">Phone No.</span><br>
+                    <span style="color: #000000; font-size: 16px; font-weight: 500;"><%= vendorDetails.phoneNumber %></span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span style="color: #7F7F7F; font-size: 14px;">Email ID</span><br>
+                    <span style="color: #000000; font-size: 16px; font-weight: 500;"><%= vendorDetails.email %></span>
+                </td>
+
+                <% if(vendorDetails.gstNo){ %>
+                    <td colspan="2">
+                        <span style="color: #7F7F7F; font-size: 14px;">GST No.</span><br>
+                        <span style="color: #000000; font-size: 16px; font-weight: 500;"><%= vendorDetails.gstNo %></span>
+                    </td>
+                <% } %>
+            </tr>
+            <tr>
+                <% if(vendorDetails.panNo){ %>
+                    <td>
+                        <span style="color: #7F7F7F; font-size: 14px;">PAN No.</span><br>
+                        <span style="color: #000000; font-size: 16px; font-weight: 500;"><%= vendorDetails.panNo %></span>
+                    </td>
+                <% } %>
+
+                <% if(vendorDetails.licenseNo){ %>
+                    <td colspan="2">
+                        <span style="color: #7F7F7F; font-size: 14px;">License No.</span><br>
+                        <span style="color: #000000; font-size: 16px; font-weight: 500;"><%= vendorDetails.licenseNo %></span>
+                    </td>
+                <% } %>
+            </tr>
+            <tr>
+                <% if(vendorDetails.address){ %>
+                    <td colspan="3">
+                        <span style="color: #7F7F7F; font-size: 14px;">Address</span><br>
+                        <span style="color: #000000; font-size: 16px; font-weight: 500;"><%= vendorDetails.address %></span>
+                    </td>
+                <% } %>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

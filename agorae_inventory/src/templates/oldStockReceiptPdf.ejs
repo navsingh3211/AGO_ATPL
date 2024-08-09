@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Receipt</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+    </style>
+</head>
+<body>
+<table cellspacing="0" cellpadding="0" width="100%">
+  <tbody>
+      <tr>
+          <td style="padding-bottom: 8px;font-size:11px;padding-right: 8px;"><b>Date Modified</b><br/>
+            <%= oldStockAllData.modifiedAt ? oldStockAllData.modifiedAt : 'NA' %>
+          </td>
+          <td style="padding-bottom: 8px;font-size:11px;padding-right: 8px;"><b>Category</b><br/>
+            <%= oldStockAllData.categoryName ? oldStockAllData.categoryName : 'NA' %>
+          </td>
+          <td colspan="3" style="padding-bottom: 8px;font-size:11px;padding-right: 8px;"><b>Sub Category</b><br/>
+            <%= oldStockAllData.subCategoryName ? oldStockAllData.subCategoryName : 'NA' %>
+          </td>
+      </tr>
+      <tr>
+          <td colspan="5" style="padding-bottom: 8px;font-size:11px;padding-right: 8px;"><b>Item</b><br/>
+            <%= oldStockAllData.itemName ? oldStockAllData.itemName : 'NA' %>
+          </td>
+      </tr>
+      <tr>
+          <td style="padding-bottom: 8px;font-size:11px;padding-right: 8px;"><b>Item size</b><br/>
+            <%= oldStockAllData.size ? oldStockAllData.size : 'NA' %>
+          </td>
+          <td style="padding-bottom: 8px;font-size:11px;padding-right: 8px;"><b>Avaliable Qty</b><br/>
+            <%= oldStockAllData.avaliableQuantity ? oldStockAllData.avaliableQuantity.quantity +' '+(oldStockAllData.avaliableQuantity.unit ? oldStockAllData.avaliableQuantity.unit.unitName : '') : 'NA' %>
+          </td>
+          <td style="padding-bottom: 8px;font-size:11px;padding-right: 8px;"><b>Qty to be sold</b><br/>
+            <%= oldStockAllData.quantityToBeSold ? oldStockAllData.quantityToBeSold.quantity +' '+(oldStockAllData.quantityToBeSold.unit ? oldStockAllData.quantityToBeSold.unit.unitName : '') : 'NA' %>
+          </td>
+          <td style="padding-bottom: 8px;font-size:11px;padding-right: 8px;"><b>Purchase Price Per Unit</b><br/>
+            ₹<%= oldStockAllData.purchasePricePerUnit ? oldStockAllData.purchasePricePerUnit : 'NA' %>
+          </td>
+          <td style="padding-bottom: 8px;font-size:11px;padding-right: 8px;"><b>Total Purchase Price</b><br/>₹<%= oldStockAllData.totalPurchasePrice ? oldStockAllData.totalPurchasePrice : 'NA' %></td>
+      </tr>
+      <tr>
+          <td style="padding-bottom: 8px;font-size:11px;padding-right: 8px;"><b>Selling Price Per unit</b><br/>
+            ₹<%= oldStockAllData.sellingPricePerUnit ? oldStockAllData.sellingPricePerUnit : 'NA' %>
+          </td>
+          <td style="padding-bottom: 8px;font-size:11px;padding-right: 8px;"><b>Total Selling Price</b><br/>
+            ₹<%= oldStockAllData.totalSellingPrice ? oldStockAllData.totalSellingPrice : 'NA' %>
+          </td>
+          <td colspan="3" style="padding-bottom: 8px;font-size:11px;padding-right: 8px;"><b>Vendor</b><br/>
+            <%= oldStockAllData.vendorName ? oldStockAllData.vendorName : 'NA' %>
+          </td>
+      </tr>
+      <tr>
+          <td colspan="5" style="padding-bottom: 8px;font-size:11px;padding-right: 8px;"><b>Note</b><br/>
+            <%= oldStockAllData.note ? oldStockAllData.note : 'NA' %>
+          </td>
+      </tr>
+  </tbody>
+</table>
+
+</body>
+</html>
